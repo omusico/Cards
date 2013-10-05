@@ -4,5 +4,9 @@
     <string name="app_name">Cards</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="new_game">Create New Game</string>
+    <string name="display_name">Enter Display Name</string>
+    <string name="game_number">Enter Game Number</string>
+    <string name="join_game">Join Existing Game</string>
 
 </resources>
