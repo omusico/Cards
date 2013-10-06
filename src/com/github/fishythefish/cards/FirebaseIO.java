@@ -5,7 +5,8 @@ import java.util.HashMap;
 import com.firebase.client.Firebase;
 
 public class FirebaseIO {
-	
+
+	public static final String HOME = "https://cardsapp.firebaseIO.com/";
 	
 	Firebase fb;
 	

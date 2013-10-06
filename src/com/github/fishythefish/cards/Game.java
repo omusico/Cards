@@ -5,22 +5,22 @@ import com.firebase.client.Firebase;
 import com.firebase.client.ValueEventListener;
 
 public class Game {
-	private static final String HOME = "https://cardsapp.firebaseIO.com/";
 	
 	long gameNum;
 	
 	FirebaseIO fb;
 	
-	public Game(final Object value) {
-		Firebase temp = new Firebase(HOME);
+	public Game(final String name) {
+		Firebase temp = new Firebase(FirebaseIO.HOME);
 		
 		temp.addListenerForSingleValueEvent(new ValueEventListener() {
 			@Override
 	    	public void onDataChange(DataSnapshot snap) {
 	        	gameNum = snap.getChildrenCount();
 	    		
-	    		fb = new FirebaseIO(HOME);
-	    		fb.write(Long.toString(gameNum), value);
+	    		fb = new FirebaseIO(FirebaseIO.HOME);
+	    		fb.write(Long.toString(gameNum), name);
+	    		fb.write(Long.toString(gameNum) + "/0", name);
 	    	}
 			    
 	    	@Override public void onCancelled() {
@@ -31,7 +31,25 @@ public class Game {
 	
 	public Game(long number) {
 		gameNum = number;
-		fb = new FirebaseIO(HOME + number);
+		fb = new FirebaseIO(FirebaseIO.HOME + number);
+	}
+	
+	public void addPlayer(final String name) {
+		Firebase temp = new Firebase(FirebaseIO.HOME + gameNum);
+		
+		temp.addListenerForSingleValueEvent(new ValueEventListener() {
+			@Override
+	    	public void onDataChange(DataSnapshot snap) {
+	        	long players = snap.getChildrenCount();
+	    		
+	    		fb = new FirebaseIO(FirebaseIO.HOME + gameNum);
+	    		fb.write(Long.toString(players), name);
+	    	}
+			    
+	    	@Override public void onCancelled() {
+	    		System.err.println("Listener was cancelled");
+	    	}
+		});
 	}
 	
 	public long getGameNum() {

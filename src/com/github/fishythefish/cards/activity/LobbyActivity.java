@@ -9,11 +9,13 @@ import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 
+import com.github.fishythefish.cards.FirebaseIO;
 import com.github.fishythefish.cards.Game;
 import com.github.fishythefish.cards.R;
 
 public class LobbyActivity extends Activity {
 
+	
 	private long gameNumber;
 	private boolean host;
 	private String name;
@@ -50,6 +52,7 @@ public class LobbyActivity extends Activity {
 			game = new Game(name);
 		} else {
 			game = new Game(gameNumber);
+			game.addPlayer(name);
 		}
 		
 		setTitle("Game #" + game.getGameNum());
