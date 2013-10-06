@@ -19,8 +19,8 @@ public class Game {
 	        	gameNum = snap.getChildrenCount();
 	    		
 	    		fb = new FirebaseIO(FirebaseIO.HOME);
-	    		fb.write(Long.toString(gameNum), name);
-	    		fb.write(Long.toString(gameNum) + "/0", name);
+	    		fb.child(Long.toString(gameNum));
+	    		addPlayer(name);
 	    	}
 			    
 	    	@Override public void onCancelled() {
@@ -35,14 +35,14 @@ public class Game {
 	}
 	
 	public void addPlayer(final String name) {
-		Firebase temp = new Firebase(FirebaseIO.HOME + gameNum);
+		Firebase temp = new Firebase(FirebaseIO.HOME + gameNum + "/");
 		
 		temp.addListenerForSingleValueEvent(new ValueEventListener() {
 			@Override
 	    	public void onDataChange(DataSnapshot snap) {
 	        	long players = snap.getChildrenCount();
 	    		
-	    		fb = new FirebaseIO(FirebaseIO.HOME + gameNum);
+	    		fb = new FirebaseIO(FirebaseIO.HOME + gameNum + "/");
 	    		fb.write(Long.toString(players), name);
 	    	}
 			    

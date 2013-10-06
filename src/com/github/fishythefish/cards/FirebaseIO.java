@@ -14,6 +14,10 @@ public class FirebaseIO {
 		fb = new Firebase(address);
 	}
 	
+	public void child(String childString) {
+		fb.child(childString);
+	}
+	
 	public void write(String childString, Object value) {
 		fb.child(childString).setValue(value);
 	}
