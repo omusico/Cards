@@ -12,11 +12,24 @@ public class Pile {
 	}
 	
 	public boolean checkContains(long in) {
-		return ((pile & in) == pile);
+		return ((pile | in) == pile);
 	}
 	
-	public void add(long in) {
-		if (!checkContains(in))
+	public boolean add(long in) {
+		if (!checkContains(in)) {
 			pile += in;
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public boolean remove(long in) {
+		if (checkContains(in)){
+			pile -= in;
+			return true;
+		}
+		
+		return false;
 	}
 }
