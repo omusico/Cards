@@ -9,7 +9,7 @@ public class FirebaseIO {
 	Firebase fb;
 	
 	public FirebaseIO(String address) {
-		fb = new Firebase(address);	
+		fb = new Firebase(address);
 	}
 	
 	public void write(String childString, Object value) {

@@ -22,6 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.github.fishythefish.cards.activity.LobbyActivity"
+            android:label="@string/title_activity_lobby" >
+        </activity>
     </application>
 
 </manifest>
