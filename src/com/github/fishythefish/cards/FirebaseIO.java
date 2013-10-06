@@ -4,11 +4,19 @@ import com.firebase.client.Firebase;
 
 public class FirebaseIO {
 	
-	Firebase fb;
+	String base_address;
 	
 	public FirebaseIO(String address) {
-		fb = new Firebase(address);
+		base_address = address;
+		
 	}
 	
+	public void moveCard(String game, String orig, String dest, int origval, int destval) {
+		Firebase fb = new Firebase(base_address + game + orig);
+		fb.setValue(origval);
+		
+		fb = new Firebase(base_address + game + dest);
+		fb.setValue(destval);
+	}
 	
 }
