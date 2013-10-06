@@ -9,7 +9,6 @@ import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 
-import com.github.fishythefish.cards.FirebaseIO;
 import com.github.fishythefish.cards.Game;
 import com.github.fishythefish.cards.R;
 
@@ -20,9 +19,6 @@ public class LobbyActivity extends Activity {
 	private boolean host;
 	private String name;
 	
-	private int black;
-	private int darkgray;
-	private int lightgray;
 	private int white;
 	
 	private TableLayout table;
@@ -35,9 +31,6 @@ public class LobbyActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lobby);
 		
-		black = getResources().getColor(R.color.black);
-		darkgray = getResources().getColor(R.color.darkgray);
-		lightgray = getResources().getColor(R.color.lightgray);
 		white = getResources().getColor(R.color.white);
 		
 		Intent intent = getIntent();
@@ -56,6 +49,9 @@ public class LobbyActivity extends Activity {
 		}
 		
 		setTitle("Game #" + game.getGameNum());
+		
+		
+		
 		TableRow hostRow = new TableRow(this);
 		hostRow.setLayoutParams(lp);
 		TextView nameView = new TextView(this);
@@ -64,6 +60,8 @@ public class LobbyActivity extends Activity {
 		nameView.setTextColor(white);
 		hostRow.addView(nameView);
 		table.addView(hostRow);
+		
+		
 	}
 
 	@Override

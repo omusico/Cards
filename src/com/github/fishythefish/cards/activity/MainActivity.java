@@ -18,9 +18,7 @@ public class MainActivity extends Activity {
 
 	private Context context = this;
 	
-	private int black;
 	private int darkgray;
-	private int lightgray;
 	private int white;
 	
 	private Button newGameButton;
@@ -77,9 +75,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		black = getResources().getColor(R.color.black);
 		darkgray = getResources().getColor(R.color.darkgray);
-		lightgray = getResources().getColor(R.color.lightgray);
 		white = getResources().getColor(R.color.white);
 		
 		newGameButton = (Button)findViewById(R.id.new_game_button);

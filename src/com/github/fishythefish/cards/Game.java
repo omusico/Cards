@@ -6,7 +6,7 @@ import com.firebase.client.ValueEventListener;
 
 public class Game {
 	
-	long gameNum;
+	long gameNum = -1;
 	
 	FirebaseIO fb;
 	
@@ -43,7 +43,7 @@ public class Game {
 	        	long players = snap.getChildrenCount();
 	    		
 	    		fb = new FirebaseIO(FirebaseIO.HOME + gameNum + "/");
-	    		fb.write(Long.toString(players), name);
+	    		fb.write(Long.toString(players) + "/" + name, 0);
 	    	}
 			    
 	    	@Override public void onCancelled() {
@@ -54,9 +54,5 @@ public class Game {
 	
 	public long getGameNum() {
 		return gameNum;
-	}
-	
-	public FirebaseIO getFIO() {
-		return fb;
 	}
 }
