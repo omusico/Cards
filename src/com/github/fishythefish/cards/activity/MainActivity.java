@@ -1,10 +1,14 @@
 package com.github.fishythefish.cards.activity;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -12,6 +16,8 @@ import com.github.fishythefish.cards.R;
 
 public class MainActivity extends Activity {
 
+	private Context context = this;
+	
 	private int black;
 	private int darkgray;
 	private int lightgray;
@@ -21,6 +27,25 @@ public class MainActivity extends Activity {
 	private Button joinGameButton;
 	private EditText displayNameText;
 	private EditText gameNumberText;
+	
+	private OnClickListener onClickListener = new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			if (v == findViewById(R.id.new_game_button)) {
+				Intent intent = new Intent(context, LobbyActivity.class);
+				intent.putExtra("Host", true);
+				intent.putExtra("Name", displayNameText.getText().toString().trim());
+				startActivity(intent);
+			}
+			
+			if (v == findViewById(R.id.join_game_button)) {
+				Intent intent = new Intent(context, LobbyActivity.class);
+				intent.putExtra("Game", gameNumberText.getText().toString().trim());
+				intent.putExtra("Name", displayNameText.getText().toString().trim());
+				startActivity(intent);
+			}
+		}
+	};
 	
 	private TextWatcher textWatcher = new TextWatcher() {
 		@Override
@@ -63,6 +88,8 @@ public class MainActivity extends Activity {
 		gameNumberText = (EditText)findViewById(R.id.game_number_text);
 		
 		setTitle("Cards");
+		newGameButton.setOnClickListener(onClickListener);
+		joinGameButton.setOnClickListener(onClickListener);
 		displayNameText.addTextChangedListener(textWatcher);
 		gameNumberText.addTextChangedListener(textWatcher);
 	}
