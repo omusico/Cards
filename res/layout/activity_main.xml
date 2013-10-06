@@ -17,10 +17,12 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:enabled="false"
-        android:text="@string/new_game" />
+        android:text="@string/new_game"
+        android:textColor="@color/white"
+        android:textColorHint="@color/lightgray" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/display_name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -43,7 +45,9 @@
         android:layout_alignLeft="@+id/new_game_button"
         android:layout_alignRight="@+id/new_game_button"
         android:enabled="false"
-        android:text="@string/join_game" />
+        android:text="@string/join_game"
+        android:textColor="@color/white"
+        android:textColorHint="@color/lightgray" />
 
     <EditText
         android:id="@+id/game_number_text"
@@ -64,8 +68,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/game_number_text"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
+        android:layout_alignLeft="@+id/display_name_text"
+        android:layout_below="@+id/display_name_text"
         android:contentDescription="@string/ace_of_spades"
         android:src="@drawable/card_back_trimmed" />
 

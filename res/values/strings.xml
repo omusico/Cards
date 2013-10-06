@@ -12,5 +12,6 @@
     <string name="ace_of_spades">Ace of Spades</string>
     <string name="title_activity_lobby">LobbyActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="start_game">Start Game</string>
 
 </resources>
