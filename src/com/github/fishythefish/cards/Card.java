@@ -31,7 +31,7 @@ public class Card {
 	}
 	
 	public static Card[] fromBinary(long binary) {
-		binary &= (1 << 52) - 1;
+		binary &= (1L << 52) - 1;
 		Card[] cards = new Card[Long.bitCount(binary)];
 		int index = 0;
 		while (index < cards.length) {
