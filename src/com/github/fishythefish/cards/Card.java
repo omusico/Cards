@@ -22,4 +22,31 @@ public class Card {
 		return value;
 	}
 	
+	public static long toBinary(Card[] cards) {
+		long binary = 0;
+		for (Card card : cards) {
+			binary |= 1 << toIndex(card);
+		}
+		return binary;
+	}
+	
+	public static Card[] fromBinary(long binary) {
+		Card[] cards = new Card[Long.bitCount(binary)];
+		int index = cards.length - 1;
+		while (binary != 0) {
+			int cardIndex = Long.numberOfTrailingZeros(binary);
+			cards[index--] = fromIndex(cardIndex);
+			binary >>= cardIndex + 1;
+		}
+		return cards;
+	}
+	
+	public static int toIndex(Card card) {
+		return card.suit.ordinal() * 13 + card.value.ordinal();
+	}
+	
+	public static Card fromIndex(int index) {
+		return new Card(Suit.values()[index / 13], Value.values()[index % 13]);
+	}
+	
 }
