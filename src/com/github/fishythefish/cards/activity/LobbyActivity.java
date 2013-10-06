@@ -4,16 +4,17 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 
+import com.github.fishythefish.cards.Game;
 import com.github.fishythefish.cards.R;
 
 public class LobbyActivity extends Activity {
 
+	private long gameNumber;
 	private boolean host;
 	private String name;
 	
@@ -24,6 +25,8 @@ public class LobbyActivity extends Activity {
 	
 	private TableLayout table;
 	private final LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+	
+	private Game game;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +40,19 @@ public class LobbyActivity extends Activity {
 		
 		Intent intent = getIntent();
 		
+		gameNumber = intent.getLongExtra("Game", -1L);
 		host = intent.getBooleanExtra("Host", false);
 		name = intent.getStringExtra("Name");
 		
 		table = (TableLayout)findViewById(R.id.table_layout);
 		
-		setTitle("Game #000000");
+		if (host) {
+			game = new Game(name);
+		} else {
+			game = new Game(gameNumber);
+		}
+		
+		setTitle("Game #" + game.getGameNum());
 		TableRow hostRow = new TableRow(this);
 		hostRow.setLayoutParams(lp);
 		TextView nameView = new TextView(this);

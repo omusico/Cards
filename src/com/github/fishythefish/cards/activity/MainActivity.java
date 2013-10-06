@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
 			
 			if (v == findViewById(R.id.join_game_button)) {
 				Intent intent = new Intent(context, LobbyActivity.class);
-				intent.putExtra("Game", gameNumberText.getText().toString().trim());
+				intent.putExtra("Game", Long.parseLong(gameNumberText.getText().toString().trim()));
 				intent.putExtra("Name", displayNameText.getText().toString().trim());
 				startActivity(intent);
 			}
