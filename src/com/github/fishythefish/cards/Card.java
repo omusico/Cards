@@ -31,12 +31,13 @@ public class Card {
 	}
 	
 	public static Card[] fromBinary(long binary) {
+		binary &= (1 << 52) - 1;
 		Card[] cards = new Card[Long.bitCount(binary)];
-		int index = cards.length - 1;
-		while (binary != 0) {
+		int index = 0;
+		while (index < cards.length) {
 			int cardIndex = Long.numberOfTrailingZeros(binary);
-			cards[index--] = fromIndex(cardIndex);
-			binary >>= cardIndex + 1;
+			cards[index++] = fromIndex(cardIndex);
+			binary -= 1 << cardIndex;
 		}
 		return cards;
 	}
@@ -47,6 +48,11 @@ public class Card {
 	
 	public static Card fromIndex(int index) {
 		return new Card(Suit.values()[index / 13], Value.values()[index % 13]);
+	}
+	
+	@Override
+	public String toString() {
+		return "Suit: " + suit + ", Value: " + value;
 	}
 	
 }
