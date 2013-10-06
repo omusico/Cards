@@ -18,7 +18,7 @@
         android:layout_alignParentRight="true"
         android:enabled="false"
         android:text="@string/new_game"
-        android:textColor="@color/white"
+        android:textColor="@color/lightgray"
         android:textColorHint="@color/lightgray" />
 
     <EditText
@@ -31,8 +31,9 @@
         android:ems="10"
         android:hint="@string/display_name"
         android:inputType="textPersonName"
+        android:maxLength="20"
         android:textColor="@color/white"
-        android:textColorHint="@color/lightgray" >
+        android:textColorHint="@color/white" >
 
         <requestFocus />
     </EditText>
@@ -46,7 +47,7 @@
         android:layout_alignRight="@+id/new_game_button"
         android:enabled="false"
         android:text="@string/join_game"
-        android:textColor="@color/white"
+        android:textColor="@color/lightgray"
         android:textColorHint="@color/lightgray" />
 
     <EditText

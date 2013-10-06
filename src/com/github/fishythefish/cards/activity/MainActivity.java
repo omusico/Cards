@@ -12,13 +12,29 @@ import com.github.fishythefish.cards.R;
 
 public class MainActivity extends Activity {
 
+	private int black;
+	private int darkgray;
+	private int lightgray;
+	private int white;
+	
+	private Button newGameButton;
+	private Button joinGameButton;
+	private EditText displayNameText;
+	private EditText gameNumberText;
+	
 	private TextWatcher textWatcher = new TextWatcher() {
 		@Override
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
-			EditText displayNameText = (EditText)findViewById(R.id.display_name_text);
-			EditText gameNumberText = (EditText)findViewById(R.id.game_number_text);
-			((Button)findViewById(R.id.new_game_button)).setEnabled(displayNameText.getText().toString().trim().length() > 0);
-			((Button)findViewById(R.id.join_game_button)).setEnabled(displayNameText.getText().toString().trim().length() > 0 & gameNumberText.getText().toString().trim().length() > 0);
+			if (displayNameText.getText().toString().trim().length() > 0) {
+				enableButton(newGameButton);
+				if (gameNumberText.getText().toString().trim().length() > 0) {
+					enableButton(joinGameButton);					
+				} else {
+					disableButton(joinGameButton);
+				}
+			} else {
+				disableButton(newGameButton);
+			}
 		}
 		
 		@Override
@@ -36,9 +52,17 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		black = getResources().getColor(R.color.black);
+		darkgray = getResources().getColor(R.color.darkgray);
+		lightgray = getResources().getColor(R.color.lightgray);
+		white = getResources().getColor(R.color.white);
+		
+		newGameButton = (Button)findViewById(R.id.new_game_button);
+		joinGameButton = (Button)findViewById(R.id.join_game_button);
+		displayNameText = (EditText)findViewById(R.id.display_name_text);
+		gameNumberText = (EditText)findViewById(R.id.game_number_text);
+		
 		setTitle("Cards");
-		EditText displayNameText = (EditText)findViewById(R.id.display_name_text);
-		EditText gameNumberText = (EditText)findViewById(R.id.game_number_text);
 		displayNameText.addTextChangedListener(textWatcher);
 		gameNumberText.addTextChangedListener(textWatcher);
 	}
@@ -48,6 +72,18 @@ public class MainActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	
+	private void enableButton(Button button) {
+		button.setEnabled(true);
+		button.setHintTextColor(white);
+		button.setTextColor(white);
+	}
+	
+	private void disableButton(Button button) {
+		button.setEnabled(false);
+		button.setHintTextColor(darkgray);
+		button.setTextColor(darkgray);
 	}
 
 }
