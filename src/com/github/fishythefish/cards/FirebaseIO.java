@@ -1,22 +1,27 @@
 package com.github.fishythefish.cards;
 
+import java.util.HashMap;
+
 import com.firebase.client.Firebase;
 
 public class FirebaseIO {
 	
-	String base_address;
+	Firebase fb;
 	
 	public FirebaseIO(String address) {
-		base_address = address;
-		
+		fb = new Firebase(address);	
 	}
 	
-	public void moveCard(String game, String orig, String dest, int origval, int destval) {
-		Firebase fb = new Firebase(base_address + game + orig);
-		fb.setValue(origval);
-		
-		fb = new Firebase(base_address + game + dest);
-		fb.setValue(destval);
+	public void write(String childString, Object value) {
+		fb.child(childString).setValue(value);
+	}
+	
+	public void writeMultiple(HashMap<String, Object> map) {
+		fb.setValue(map);
+	}
+	
+	public void update(HashMap<String, Object> map) {
+		fb.updateChildren(map);
 	}
 	
 }
